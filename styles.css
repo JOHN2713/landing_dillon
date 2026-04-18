@@ -186,6 +186,19 @@ body {
     opacity: 0.8;
 }
 
+.form-timer {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    font-size: 13px;
+    opacity: 1 !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+}
+
 /* Image Slider */
 .slider-container {
     position: relative;
@@ -321,7 +334,7 @@ body {
 }
 
 .info-button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
     background: transparent;
@@ -333,6 +346,8 @@ body {
     font-size: 14px;
     transition: all 0.3s ease;
     text-decoration: none;
+    margin-left: 8px;
+    vertical-align: middle;
 }
 
 .info-button i {
@@ -694,6 +709,17 @@ body {
         line-height: 1.4;
         word-wrap: break-word;
         overflow-wrap: break-word;
+    }
+
+    .form-timer {
+        padding: 8px 16px;
+        font-size: 11px;
+        border-radius: 20px;
+        margin-top: 8px;
+        text-align: center;
+        display: block;
+        width: fit-content;
+        max-width: 90%;
     }
 
     /* Show/hide appropriate text */
@@ -1248,6 +1274,14 @@ body {
     line-height: 1.5;
 }
 
+.success-message .apply-discount-btn {
+    display: none;
+}
+
+.success-message .promo-valid {
+    display: none;
+}
+
 .apply-discount-btn {
     width: 100%;
     max-width: 320px;
@@ -1261,6 +1295,9 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     margin-bottom: 5px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
 }
 
 .apply-discount-btn:hover {
@@ -1309,10 +1346,7 @@ body {
 }
 
 .conocer-mas-btn {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100%;
     padding: 14px 40px;
     background: #4C5FBF;
     border: none;
@@ -1327,7 +1361,52 @@ body {
 
 .conocer-mas-btn:hover {
     background: #3D4FA0;
-    transform: translateX(-50%) translateY(-2px);
+    transform: translateY(-2px);
+}
+
+.buttons-wrapper {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 90%;
+    max-width: 350px;
+}
+
+.desktop-apply-discount-btn {
+    width: 100%;
+    padding: 14px 30px;
+    background: #4BA3E3;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.desktop-apply-discount-btn:hover {
+    background: #3B8FCC;
+    transform: translateY(-2px);
+}
+
+.desktop-promo-valid {
+    font-size: 11px;
+    color: white;
+    opacity: 0.9;
+    margin: 0;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .success-footer {
@@ -1490,6 +1569,9 @@ body {
     font-size: 15px;
     cursor: pointer;
     margin-bottom: 8px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
 }
 
 .mobile-promo-valid {
@@ -1576,6 +1658,10 @@ body {
     
     .success-modal-content {
         padding: 0;
+    }
+    
+    .buttons-wrapper {
+        display: none;
     }
 }
 

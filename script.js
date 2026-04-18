@@ -410,13 +410,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Apply discount button (within modal)
-    modal.addEventListener('click', function(e) {
-        if (e.target.classList.contains('apply-discount-btn')) {
-            window.open('https://perseo.com.uy/promociones', '_blank');
-        }
-    });
-    
     // Conocer más button
     modal.addEventListener('click', function(e) {
         if (e.target.classList.contains('conocer-mas-btn')) {
