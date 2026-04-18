@@ -7,21 +7,29 @@
 html {
     overflow-x: hidden;
     width: 100%;
+    height: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(180deg, #1D214E 0%, #273492 51%, #1E1E1E 100%);
+    background-attachment: fixed;
     min-height: 100vh;
+    height: auto;
     color: white;
     overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
+    position: relative;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
 }
 
 /* Header Styles */
@@ -142,6 +150,7 @@ body {
     gap: 40px;
     padding: 40px;
     align-items: start;
+    min-height: auto;
 }
 
 /* Left Section */
@@ -488,6 +497,13 @@ body {
 }
 
 @media (max-width: 768px) {
+    html,
+    body {
+        height: auto;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+
     .header {
         padding: 16px 18px;
     }
@@ -542,6 +558,8 @@ body {
         padding: 0;
         gap: 0;
         grid-template-columns: 1fr;
+        min-height: auto;
+        height: auto;
     }
 
     /* Hide slider on mobile */
@@ -712,10 +730,27 @@ body {
     .submit-button {
         padding: 14px;
         font-size: 15px;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .checkbox-group {
+        margin-bottom: 20px;
     }
 
     .right-section {
         padding: 0;
+        position: static;
+        height: auto;
+        min-height: auto;
+        padding-bottom: 30px;
+    }
+
+    .form-container {
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        overflow: visible;
     }
 }
 
@@ -780,6 +815,10 @@ body {
 
     .form-container {
         padding: 16px;
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        overflow: visible;
     }
 
     .form-header h2 {
@@ -788,6 +827,27 @@ body {
 
     .form-subtitle {
         font-size: 13px;
+        margin-bottom: 18px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .submit-button {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .checkbox-group {
+        margin-bottom: 18px;
+    }
+
+    .right-section {
+        position: static;
+        height: auto;
+        padding: 0;
+        padding-bottom: 30px;
     }
 }
 
@@ -838,6 +898,30 @@ body {
 
     .form-container {
         padding: 14px;
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .form-group {
+        margin-bottom: 14px;
+    }
+
+    .submit-button {
+        width: 100%;
+        margin-top: 6px;
+    }
+
+    .checkbox-group {
+        margin-bottom: 16px;
+    }
+
+    .right-section {
+        position: static;
+        height: auto;
+        padding: 0;
+        padding-bottom: 25px;
     }
 }
 
