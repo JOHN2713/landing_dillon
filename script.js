@@ -1,4 +1,4 @@
-// Generate year options for graduation year
+// Generate year options for graduation year and birth date selects
 function populateYearSelects() {
     const graduacionSelect = document.getElementById('graduacion');
     
@@ -20,6 +20,47 @@ function populateYearSelects() {
             option.selected = true;
         }
         graduacionSelect.appendChild(option);
+    }
+    
+    // Poblar selects de fecha de nacimiento para móvil
+    populateBirthDateSelects();
+}
+
+// Poblar selects de día, mes y año para fecha de nacimiento (móvil)
+function populateBirthDateSelects() {
+    const diaSelect = document.getElementById('dia-nacimiento');
+    const mesSelect = document.getElementById('mes-nacimiento');
+    const anioSelect = document.getElementById('anio-nacimiento');
+    
+    // Poblar días (1-31)
+    diaSelect.innerHTML = '<option value="">Día</option>';
+    for (let i = 1; i <= 31; i++) {
+        const option = document.createElement('option');
+        option.value = i.toString().padStart(2, '0');
+        option.textContent = i;
+        diaSelect.appendChild(option);
+    }
+    
+    // Poblar meses
+    mesSelect.innerHTML = '<option value="">Mes</option>';
+    const meses = [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+        'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ];
+    meses.forEach((mes, index) => {
+        const option = document.createElement('option');
+        option.value = (index + 1).toString().padStart(2, '0');
+        option.textContent = mes;
+        mesSelect.appendChild(option);
+    });
+    
+    // Poblar años (1950-2010)
+    anioSelect.innerHTML = '<option value="">Año</option>';
+    for (let year = 2010; year >= 1950; year--) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        anioSelect.appendChild(option);
     }
 }
 
@@ -251,6 +292,37 @@ document.addEventListener('DOMContentLoaded', function() {
         limpiarError('celular');
         limpiarError('correo');
         
+        // Obtener fecha de nacimiento según el dispositivo
+        let fechaNacimiento = '';
+        const dateDesktop = document.getElementById('nacimiento');
+        const dateMobile = document.querySelector('.date-mobile');
+        
+        // Verificar si estamos en móvil (si date-mobile está visible)
+        const isMobile = window.getComputedStyle(dateMobile).display !== 'none';
+        
+        if (isMobile) {
+            // Obtener valores de los selects móviles
+            const dia = document.getElementById('dia-nacimiento').value;
+            const mes = document.getElementById('mes-nacimiento').value;
+            const anio = document.getElementById('anio-nacimiento').value;
+            
+            if (dia && mes && anio) {
+                fechaNacimiento = `${anio}-${mes}-${dia}`;
+                // Deshabilitar validación del date picker desktop
+                dateDesktop.removeAttribute('required');
+            } else {
+                alert('Por favor complete la fecha de nacimiento (día, mes y año)');
+                return;
+            }
+        } else {
+            // Usar el date picker de desktop
+            fechaNacimiento = dateDesktop.value;
+            if (!fechaNacimiento) {
+                alert('Por favor seleccione su fecha de nacimiento');
+                return;
+            }
+        }
+        
         // Get form data
         const formData = {
             categoria: document.getElementById('categoria').value,
@@ -259,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
             cedula: document.getElementById('cedula').value,
             celular: document.getElementById('celular').value,
             correo: document.getElementById('correo').value,
-            nacimiento: document.getElementById('nacimiento').value,
+            nacimiento: fechaNacimiento,
             graduacion: document.getElementById('graduacion').value,
             terminos: document.getElementById('terminos').checked
         };
@@ -304,6 +376,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Reset form
         this.reset();
+        
+        // Resetear selects de fecha móvil
+        document.getElementById('dia-nacimiento').selectedIndex = 0;
+        document.getElementById('mes-nacimiento').selectedIndex = 0;
+        document.getElementById('anio-nacimiento').selectedIndex = 0;
+        
+        // Restablecer required en date picker desktop
+        document.getElementById('nacimiento').setAttribute('required', 'required');
         
         // Deshabilitar select de equipos después del reset
         equipoSelect.disabled = true;

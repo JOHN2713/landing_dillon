@@ -461,6 +461,25 @@ body {
     gap: 15px;
 }
 
+/* Date pickers - Desktop y Móvil */
+.date-desktop {
+    display: block;
+}
+
+.date-mobile {
+    display: none;
+}
+
+.date-mobile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+}
+
+.date-mobile-grid select {
+    width: 100%;
+}
+
 /* Checkbox */
 .checkbox-group {
     margin-bottom: 25px;
@@ -762,6 +781,15 @@ body {
 
     .form-row {
         grid-template-columns: 1fr;
+    }
+
+    /* Mostrar selects de fecha en móvil */
+    .date-desktop {
+        display: none;
+    }
+
+    .date-mobile {
+        display: block;
     }
 
     .form-container {
