@@ -300,16 +300,19 @@ document.addEventListener('DOMContentLoaded', function() {
         // Verificar si estamos en móvil (si date-mobile está visible)
         const isMobile = window.getComputedStyle(dateMobile).display !== 'none';
         
+        console.log('🔍 Detectando dispositivo:', isMobile ? 'MÓVIL' : 'DESKTOP');
+        
         if (isMobile) {
             // Obtener valores de los selects móviles
             const dia = document.getElementById('dia-nacimiento').value;
             const mes = document.getElementById('mes-nacimiento').value;
             const anio = document.getElementById('anio-nacimiento').value;
             
+            console.log('📅 Valores móvil - Día:', dia, 'Mes:', mes, 'Año:', anio);
+            
             if (dia && mes && anio) {
                 fechaNacimiento = `${anio}-${mes}-${dia}`;
-                // Deshabilitar validación del date picker desktop
-                dateDesktop.removeAttribute('required');
+                console.log('✅ Fecha formada:', fechaNacimiento);
             } else {
                 alert('Por favor complete la fecha de nacimiento (día, mes y año)');
                 return;
@@ -317,6 +320,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             // Usar el date picker de desktop
             fechaNacimiento = dateDesktop.value;
+            console.log('📅 Fecha desktop:', fechaNacimiento);
+            
             if (!fechaNacimiento) {
                 alert('Por favor seleccione su fecha de nacimiento');
                 return;
@@ -364,15 +369,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (hasErrors) {
+            console.log('❌ Errores en validación - no se envía');
             return;
         }
         
+        console.log('✅ Todos los campos validados correctamente');
+        console.log('📊 Datos a enviar:', formData);
+        
         // Enviar a Google Sheets
-        console.log('Datos validados correctamente:', formData);
         enviarAGoogleSheets(formData);
+        
+        console.log('📤 Enviando a Google Sheets...');
         
         // Show success modal
         showSuccessModal();
+        
+        console.log('🎉 Mostrando modal de éxito');
         
         // Reset form
         this.reset();
@@ -381,9 +393,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('dia-nacimiento').selectedIndex = 0;
         document.getElementById('mes-nacimiento').selectedIndex = 0;
         document.getElementById('anio-nacimiento').selectedIndex = 0;
-        
-        // Restablecer required en date picker desktop
-        document.getElementById('nacimiento').setAttribute('required', 'required');
         
         // Deshabilitar select de equipos después del reset
         equipoSelect.disabled = true;
