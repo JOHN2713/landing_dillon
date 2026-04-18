@@ -95,13 +95,50 @@
 
                     <form id="registrationForm">
                         <div class="form-group">
+                            <label for="categoria">Categoría</label>
+                            <select id="categoria" name="categoria" required>
+                                <option value="">Seleccione una categoría</option>
+                                <option value="Olympus">Olympus</option>
+                                <option value="Master">Master</option>
+                                <option value="Senior">Senior</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="equipo">Seleccione equipo</label>
-                            <select id="equipo" name="equipo" required>
-                                <option value="">Seleccione un equipo</option>
-                                <option value="equipo1">Equipo 1</option>
-                                <option value="equipo2">Equipo 2</option>
-                                <option value="equipo3">Equipo 3</option>
-                                <option value="equipo4">Equipo 4</option>
+                            <select id="equipo" name="equipo" required disabled>
+                                <option value="">Primero seleccione una categoría</option>
+                                <!-- Equipos Olympus -->
+                                <option value="Copiadora 95" data-categoria="Olympus">Copiadora 95</option>
+                                <option value="6to H 96" data-categoria="Olympus">6to H 96</option>
+                                <option value="Manchester" data-categoria="Olympus">Manchester</option>
+                                <option value="Chupines" data-categoria="Olympus">Chupines</option>
+                                <option value="Solo panas" data-categoria="Olympus">Solo panas</option>
+                                <option value="Superdill" data-categoria="Olympus">Superdill</option>
+                                <option value="DFC" data-categoria="Olympus">DFC</option>
+                                <!-- Equipos Master -->
+                                <option value="Faced" data-categoria="Master">Faced</option>
+                                <option value="Dillon corp" data-categoria="Master">Dillon corp</option>
+                                <option value="Dilfc 99" data-categoria="Master">Dilfc 99</option>
+                                <option value="Gamonales" data-categoria="Master">Gamonales</option>
+                                <option value="D2C" data-categoria="Master">D2C</option>
+                                <option value="Copiadora 95 Master" data-categoria="Master">Copiadora 95</option>
+                                <option value="The Criminals" data-categoria="Master">The Criminals</option>
+                                <option value="Egresados sexto C" data-categoria="Master">Egresados sexto C</option>
+                                <option value="Los de siempre" data-categoria="Master">Los de siempre</option>
+                                <option value="CCCC Master" data-categoria="Master">CCCC</option>
+                                <option value="Papá Oso" data-categoria="Master">Papá Oso</option>
+                                <!-- Equipos Senior -->
+                                <option value="Copiadora 95 Senior" data-categoria="Senior">Copiadora 95</option>
+                                <option value="CCCC Senior" data-categoria="Senior">CCCC</option>
+                                <option value="Piwis" data-categoria="Senior">Piwis</option>
+                                <option value="PG 2005" data-categoria="Senior">PG 2005</option>
+                                <option value="Lokura Dillon" data-categoria="Senior">Lokura Dillon</option>
+                                <option value="Xforce" data-categoria="Senior">Xforce</option>
+                                <option value="Franco canadiense" data-categoria="Senior">Franco canadiense</option>
+                                <option value="Estudiantes de la plata" data-categoria="Senior">Estudiantes de la plata</option>
+                                <option value="Los de la 9" data-categoria="Senior">Los de la 9</option>
+                                <option value="Los Primos" data-categoria="Senior">Los Primos</option>
                             </select>
                         </div>
 
@@ -112,17 +149,20 @@
 
                         <div class="form-group">
                             <label for="cedula">Cédula de identidad</label>
-                            <input type="text" id="cedula" name="cedula" placeholder="Ingrese su número de cédula" required>
+                            <input type="text" id="cedula" name="cedula" placeholder="Ingrese su número de cédula" pattern="[0-9]{10}" maxlength="10" required>
+                            <span class="error-message" id="cedula-error"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="celular">Celular</label>
-                            <input type="tel" id="celular" name="celular" placeholder="Ingrese su número de celular" required>
+                            <input type="tel" id="celular" name="celular" placeholder="Ej: 0991234567" pattern="09[0-9]{8}" maxlength="10" required>
+                            <span class="error-message" id="celular-error"></span>
                         </div>
 
                         <div class="form-group">
                             <label for="correo">Correo</label>
-                            <input type="email" id="correo" name="correo" placeholder="Ingrese su correo electrónico" required>
+                            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+                            <span class="error-message" id="correo-error"></span>
                         </div>
 
                         <div class="form-row">
