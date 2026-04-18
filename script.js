@@ -1,33 +1,15 @@
-// Generate year options for birth year (1950-2010)
+// Generate year options for graduation year
 function populateYearSelects() {
-    const nacimientoSelect = document.getElementById('nacimiento');
     const graduacionSelect = document.getElementById('graduacion');
     
     // Clear existing options
-    nacimientoSelect.innerHTML = '';
     graduacionSelect.innerHTML = '';
     
     // Add placeholder
-    const placeholderNac = document.createElement('option');
-    placeholderNac.value = '';
-    placeholderNac.textContent = 'Seleccione año';
-    nacimientoSelect.appendChild(placeholderNac);
-    
     const placeholderGrad = document.createElement('option');
     placeholderGrad.value = '';
     placeholderGrad.textContent = 'Seleccione año';
     graduacionSelect.appendChild(placeholderGrad);
-    
-    // Populate birth years (1950-2010)
-    for (let year = 2010; year >= 1950; year--) {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        if (year === 1988) {
-            option.selected = true;
-        }
-        nacimientoSelect.appendChild(option);
-    }
     
     // Populate graduation years (1965-2026)
     for (let year = 2026; year >= 1965; year--) {
