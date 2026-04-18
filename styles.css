@@ -30,6 +30,7 @@ body {
     width: 100%;
     height: auto;
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* Header Styles */
@@ -359,6 +360,8 @@ body {
 /* Form Styles */
 .form-group {
     margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .form-group label {
@@ -366,6 +369,8 @@ body {
     margin-bottom: 8px;
     font-size: 14px;
     font-weight: 500;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .form-group input,
@@ -381,6 +386,7 @@ body {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+    box-sizing: border-box;
 }
 
 .form-group select {
@@ -465,6 +471,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-sizing: border-box;
 }
 
 .submit-button:hover {
@@ -497,6 +504,10 @@ body {
 }
 
 @media (max-width: 768px) {
+    * {
+        box-sizing: border-box;
+    }
+
     html,
     body {
         height: auto;
@@ -505,7 +516,9 @@ body {
     }
 
     .header {
-        padding: 16px 18px;
+        padding: 14px 15px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .header-content {
@@ -538,16 +551,20 @@ body {
     }
 
     .header-text h1 {
-        font-size: 16px;
+        font-size: 15px;
         line-height: 1.25;
         margin-bottom: 6px;
         font-weight: 600;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .header-text p {
-        font-size: 11px;
+        font-size: 10.5px;
         line-height: 1.4;
         opacity: 0.9;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .header-right {
@@ -573,36 +590,46 @@ body {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 24px 18px;
-        gap: 14px;
+        padding: 20px 15px;
+        gap: 12px;
         background: transparent;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .club-logo {
-        width: 85px;
-        height: 85px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
         border: 3px solid rgba(255, 255, 255, 0.3);
         padding: 5px;
         object-fit: contain;
+        flex-shrink: 0;
     }
 
     .club-text {
         width: 100%;
-        max-width: 500px;
+        max-width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
     }
 
     .club-text h2 {
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 600;
         margin-bottom: 10px;
         line-height: 1.3;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
 
     .club-text p {
-        font-size: 13px;
+        font-size: 12px;
         opacity: 0.85;
         line-height: 1.4;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     /* Show/hide appropriate text */
@@ -699,43 +726,51 @@ body {
     }
 
     .form-container {
-        padding: 18px;
+        padding: 15px;
         border-radius: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .form-header h2 {
-        font-size: 18px;
+        font-size: 17px;
     }
 
     .form-subtitle {
-        font-size: 14px;
-        margin-bottom: 20px;
+        font-size: 13px;
+        margin-bottom: 18px;
     }
 
     .form-group {
-        margin-bottom: 16px;
+        margin-bottom: 14px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .form-group label {
         font-size: 13px;
         margin-bottom: 6px;
+        display: block;
     }
 
     .form-group input,
     .form-group select {
-        padding: 12px 14px;
+        padding: 11px 12px;
         font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .submit-button {
-        padding: 14px;
+        padding: 13px;
         font-size: 15px;
-        margin-top: 10px;
+        margin-top: 8px;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .checkbox-group {
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
 
     .right-section {
@@ -744,6 +779,8 @@ body {
         height: auto;
         min-height: auto;
         padding-bottom: 30px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .form-container {
@@ -756,8 +793,13 @@ body {
 
 /* Media query específico para dispositivos móviles pequeños (iPhone 14 Pro, etc.) */
 @media (max-width: 430px) {
+    * {
+        box-sizing: border-box;
+    }
+
     .header {
         padding: 14px 16px;
+        width: 100%;
     }
 
     .header-left {
@@ -779,20 +821,25 @@ body {
     }
 
     .club-info {
-        padding: 20px 16px;
+        padding: 18px 12px;
     }
 
     .club-logo {
-        width: 80px;
-        height: 80px;
+        width: 75px;
+        height: 75px;
+    }
+
+    .club-text {
+        padding: 0 5px;
     }
 
     .club-text h2 {
-        font-size: 15px;
+        font-size: 14px;
+        line-height: 1.25;
     }
 
     .club-text p {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .socio-perseo {
@@ -819,6 +866,8 @@ body {
         min-height: auto;
         max-height: none;
         overflow: visible;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .form-header h2 {
@@ -832,11 +881,24 @@ body {
 
     .form-group {
         margin-bottom: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 10px 11px;
+        font-size: 13px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .submit-button {
         width: 100%;
         margin-top: 8px;
+        padding: 12px;
+        font-size: 14px;
+        box-sizing: border-box;
     }
 
     .checkbox-group {
@@ -848,80 +910,131 @@ body {
         height: auto;
         padding: 0;
         padding-bottom: 30px;
+        width: 100%;
+        box-sizing: border-box;
     }
 }
 
 /* Media query para dispositivos muy pequeños */
 @media (max-width: 360px) {
+    * {
+        box-sizing: border-box;
+    }
+
     .header {
-        padding: 12px 14px;
+        padding: 12px 12px;
+        width: 100%;
+    }
+
+    .header-left {
+        gap: 8px;
     }
 
     .header-text h1 {
-        font-size: 14px;
+        font-size: 13.5px;
+        line-height: 1.2;
     }
 
     .header-text p {
-        font-size: 10px;
+        font-size: 9.5px;
     }
 
     .circle {
-        width: 20px;
-        height: 20px;
+        width: 19px;
+        height: 19px;
+    }
+
+    .club-info {
+        padding: 16px 10px;
     }
 
     .club-logo {
-        width: 75px;
-        height: 75px;
+        width: 70px;
+        height: 70px;
+    }
+
+    .club-text {
+        padding: 0 5px;
     }
 
     .club-text h2 {
-        font-size: 14px;
+        font-size: 13px;
+        line-height: 1.2;
     }
 
     .club-text p {
-        font-size: 11px;
+        font-size: 10.5px;
     }
 
     .socio-perseo {
-        padding: 10px 14px;
+        padding: 10px 12px;
     }
 
     .socio-mobile-text {
-        font-size: 10px;
+        font-size: 9.5px;
     }
 
     .socio-mobile-text::before {
-        width: 55px;
-        height: 18px;
+        width: 52px;
+        height: 17px;
     }
 
     .form-container {
-        padding: 14px;
+        padding: 12px 10px;
         height: auto;
         min-height: auto;
         max-height: none;
         overflow: visible;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form-header h2 {
+        font-size: 16px;
+    }
+
+    .form-subtitle {
+        font-size: 12px;
     }
 
     .form-group {
-        margin-bottom: 14px;
+        margin-bottom: 12px;
+        width: 100%;
+    }
+
+    .form-group label {
+        font-size: 12px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 9px 10px;
+        font-size: 13px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .submit-button {
         width: 100%;
-        margin-top: 6px;
+        margin-top: 5px;
+        padding: 11px;
+        font-size: 13px;
     }
 
     .checkbox-group {
-        margin-bottom: 16px;
+        margin-bottom: 14px;
+    }
+
+    .checkbox-label {
+        font-size: 12px;
     }
 
     .right-section {
         position: static;
         height: auto;
         padding: 0;
-        padding-bottom: 25px;
+        padding-bottom: 20px;
+        width: 100%;
     }
 }
 
