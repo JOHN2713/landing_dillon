@@ -791,7 +791,7 @@ body {
     }
 }
 
-/* Media query específico para dispositivos móviles pequeños (iPhone 14 Pro, etc.) */
+/* Media query específico para dispositivos móviles pequeños (iPhone 14 Pro, y modelos similares) */
 @media (max-width: 430px) {
     * {
         box-sizing: border-box;

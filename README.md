@@ -8,7 +8,7 @@ Landing page para el registro de jugadores en el Torneo de Egresados del Colegio
 - Formulario de registro de jugadores
 - Slider de imágenes automático
 - Modal de confirmación de registro exitoso
-- Integración con promociones de Perseo
+- Integración con promociones de Perseo y Socio Perseo
 
 ## 📋 Estructura del proyecto
 
