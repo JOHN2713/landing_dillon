@@ -346,8 +346,7 @@ body {
     font-size: 14px;
     transition: all 0.3s ease;
     text-decoration: none;
-    margin-left: 8px;
-    vertical-align: middle;
+    margin-top: 10px;
 }
 
 .info-button i {
@@ -1253,13 +1252,14 @@ body {
 .success-left {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .success-message {
     background: transparent;
     padding: 0;
     border-radius: 0;
+    margin-bottom: 15px;
 }
 
 .success-message h2 {
@@ -1309,15 +1309,24 @@ body {
     font-size: 12px;
     opacity: 0.8;
     margin-top: 5px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .astronaut-image {
-    width: 50%;
-    max-width: 250px;
+    display: none;
+}
+
+.perseo-banner-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.perseo-banner {
+    width: 100%;
+    max-width: 540px;
     height: auto;
     object-fit: contain;
-    margin-top: 30px;
+    border-radius: 8px;
 }
 
 .success-right {
@@ -1410,19 +1419,37 @@ body {
 }
 
 .success-footer {
-    padding: 30px 40px;
+    padding: 20px 40px;
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
 }
 
 .success-footer .socio-perseo {
     background: rgba(255, 255, 255, 0.05);
-    padding: 25px;
+    padding: 20px 30px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+.success-footer .socio-perseo h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-footer .socio-perseo p {
+    margin-bottom: 10px;
+}
+
+.success-footer .socio-perseo .info-button {
+    margin-left: 0;
 }
 
 .register-another-btn {
@@ -1541,6 +1568,18 @@ body {
 .mobile-promo-image {
     width: 100%;
     display: block;
+}
+
+.mobile-perseo-banner-container {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.mobile-perseo-banner {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
 }
 
 .mobile-conocer-btn {
@@ -1679,6 +1718,10 @@ body {
     }
     
     .astronaut-image {
-        max-width: 200px;
+        display: none;
+    }
+
+    .perseo-banner {
+        max-width: 456px;
     }
 }
