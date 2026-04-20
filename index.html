@@ -205,7 +205,7 @@
                         <div class="form-group checkbox-group">
                             <label class="checkbox-label" for="terminos">
                                 <input type="checkbox" id="terminos" name="terminos" required>
-                                <span>Acepto los terminos y condiciones</span>
+                                <span>Acepto los <a href="#" id="openTermsModal" class="terms-link">términos y condiciones</a></span>
                             </label>
                         </div>
 
@@ -346,6 +346,18 @@
                     <button class="register-another-btn">Registrar otro jugador</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div id="termsModal" class="terms-modal">
+        <div class="terms-modal-content">
+            <span class="terms-close">&times;</span>
+            <h2>Términos y Condiciones</h2>
+            <div class="terms-text">
+                <p>Autorizo de forma libre, previa, específica, informada e inequívoca a Perseo a tratar mis datos personales conforme a las finalidades descritas en su Política de Privacidad, en cumplimiento de la Ley Orgánica de Protección de Datos Personales.</p>
+            </div>
+            <button class="terms-accept-btn" id="acceptTermsBtn">Aceptar</button>
         </div>
     </div>
 

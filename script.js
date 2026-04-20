@@ -475,3 +475,49 @@ async function enviarAGoogleSheets(formData) {
         return false;
     }
 }
+
+// Terms and Conditions Modal
+document.addEventListener('DOMContentLoaded', function() {
+    const termsModal = document.getElementById('termsModal');
+    const openTermsLink = document.getElementById('openTermsModal');
+    const closeTermsBtn = document.querySelector('.terms-close');
+    const acceptTermsBtn = document.getElementById('acceptTermsBtn');
+    const termsCheckbox = document.getElementById('terminos');
+
+    // Abrir modal al hacer clic en el enlace
+    if (openTermsLink) {
+        openTermsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            termsModal.classList.add('active');
+        });
+    }
+
+    // Cerrar modal al hacer clic en la X
+    if (closeTermsBtn) {
+        closeTermsBtn.addEventListener('click', function() {
+            termsModal.classList.remove('active');
+        });
+    }
+
+    // Cerrar modal al hacer clic fuera del contenido
+    termsModal.addEventListener('click', function(e) {
+        if (e.target === termsModal) {
+            termsModal.classList.remove('active');
+        }
+    });
+
+    // Aceptar términos y cerrar modal
+    if (acceptTermsBtn) {
+        acceptTermsBtn.addEventListener('click', function() {
+            termsCheckbox.checked = true;
+            termsModal.classList.remove('active');
+        });
+    }
+
+    // Cerrar con tecla ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && termsModal.classList.contains('active')) {
+            termsModal.classList.remove('active');
+        }
+    });
+});
