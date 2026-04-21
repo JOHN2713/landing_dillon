@@ -1,6 +1,71 @@
 # ✅ RESUMEN DE CAMBIOS IMPLEMENTADOS
 
-## 🎯 FORMULARIO ACTUALIZADO
+## � ÚLTIMOS CAMBIOS (21 Abril 2026)
+
+### **1. Campo Nombres y Apellidos Actualizado**
+```
+┌─────────────────────────────────────────────────┐
+│ Nombres y Apellidos (2 nombres y 2 apellidos)  │
+│ ┌─────────────────────────────────────────────┐ │
+│ │ Ej: Juan Carlos Pérez González            │ │
+│ └─────────────────────────────────────────────┘ │
+└─────────────────────────────────────────────────┘
+```
+✅ Ahora indica claramente que se requieren 2 nombres y 2 apellidos
+
+### **2. Checkbox de Graduación (NUEVO)**
+```
+┌─────────────────────────────────┐
+│ ☐ ¿Ya se graduó?                │
+└─────────────────────────────────┘
+```
+✅ Se muestra antes del campo de año de graduación
+✅ Si el usuario NO marca el checkbox, el año de graduación NO se muestra
+✅ Si el usuario SÍ marca el checkbox, aparece el campo de año
+
+### **3. Año de Graduación Condicional**
+```
+Si NO está graduado:
+┌─────────────────────────────────┐
+│ ☐ ¿Ya se graduó?                │
+└─────────────────────────────────┘
+[Campo de año NO aparece]
+
+Si SÍ está graduado:
+┌─────────────────────────────────┐
+│ ☑ ¿Ya se graduó?                │
+└─────────────────────────────────┘
+┌─────────────────────────────────┐
+│ Año de graduación               │
+│ ┌─────────────────────────────┐ │
+│ │ Seleccione año ▼             │ │
+│ │ 2026, 2025, 2024...          │ │
+│ └─────────────────────────────┘ │
+└─────────────────────────────────┘
+```
+
+### **4. Actualización de Google Sheets**
+```
+Nueva estructura de columnas:
+| Columna | Nombre            | Tipo      | Ejemplo                    |
+|---------|-------------------|-----------|----------------------------|
+| A       | Timestamp         | Fecha     | 2026-04-21 10:30:15        |
+| B       | Categoría         | Texto     | Olympus                    |
+| C       | Equipo            | Texto     | Manchester                 |
+| D       | Nombre            | Texto     | Juan Carlos Pérez González |
+| E       | Cédula            | Número    | 1234567890                 |
+| F       | Celular           | Número    | 0991234567                 |
+| G       | Correo            | Email     | juan@mail.com              |
+| H       | Fecha Nacimiento  | Fecha     | 1995-05-15                 |
+| I       | ¿Graduado?        | Texto     | Sí / No                    |
+| J       | Año Graduación    | Texto     | 2013 / N/A                 |
+```
+✅ Nueva columna "¿Graduado?" agregada
+✅ Si no está graduado, el año se guarda como "N/A"
+
+---
+
+## �🎯 FORMULARIO ACTUALIZADO
 
 ### **1. Campo Categoría (NUEVO)**
 ```
@@ -205,17 +270,18 @@ Después de seleccionar categoría:
 ## 📊 ESTRUCTURA DE DATOS EN GOOGLE SHEETS
 
 ```
-| Columna | Nombre            | Tipo      | Ejemplo              |
-|---------|-------------------|-----------|----------------------|
-| A       | Timestamp         | Fecha     | 2026-04-18 10:30:15  |
-| B       | Categoría         | Texto     | Olympus              |
-| C       | Equipo            | Texto     | Manchester           |
-| D       | Nombre            | Texto     | Juan Pérez           |
-| E       | Cédula            | Número    | 1234567890           |
-| F       | Celular           | Número    | 0991234567           |
-| G       | Correo            | Email     | juan@mail.com        |
-| H       | Fecha Nacimiento  | Fecha     | 1995-05-15           |
-| I       | Año Graduación    | Número    | 2013                 |
+| Columna | Nombre            | Tipo      | Ejemplo                    |
+|---------|-------------------|-----------|----------------------------|
+| A       | Timestamp         | Fecha     | 2026-04-21 10:30:15        |
+| B       | Categoría         | Texto     | Olympus                    |
+| C       | Equipo            | Texto     | Manchester                 |
+| D       | Nombre            | Texto     | Juan Carlos Pérez González |
+| E       | Cédula            | Número    | 1234567890                 |
+| F       | Celular           | Número    | 0991234567                 |
+| G       | Correo            | Email     | juan@mail.com              |
+| H       | Fecha Nacimiento  | Fecha     | 1995-05-15                 |
+| I       | ¿Graduado?        | Texto     | Sí / No                    |
+| J       | Año Graduación    | Texto     | 2013 / N/A                 |
 ```
 
 ---
@@ -247,7 +313,12 @@ Después de seleccionar categoría:
 - [x] Mensajes de error en tiempo real
 - [x] Función de envío a Google Sheets
 - [x] Documentación completa
+- [x] **Campo nombres actualizado (2 nombres y 2 apellidos)**
+- [x] **Checkbox de graduación agregado**
+- [x] **Campo año de graduación condicional**
+- [x] **Google Sheets actualizado con nueva columna**
 - [ ] **Conectar con Google Sheets** (sigue INSTRUCCIONES_GOOGLE_SHEETS.md)
+- [ ] **Actualizar código en Google Apps Script** (copiar nuevo código)
 - [ ] Probar formulario completo
 - [ ] Verificar que los datos lleguen al Google Sheet
 

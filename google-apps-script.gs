@@ -23,6 +23,11 @@ function doPost(e) {
     // Parsear los datos del formulario
     const data = JSON.parse(e.postData.contents);
     
+    // Log para debugging
+    Logger.log('Datos recibidos: ' + JSON.stringify(data));
+    Logger.log('Graduado: ' + data.graduado);
+    Logger.log('Graduación: ' + data.graduacion);
+    
     // Si es la primera vez, agregar encabezados
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
@@ -34,11 +39,12 @@ function doPost(e) {
         'Celular',
         'Correo',
         'Fecha Nacimiento',
+        '¿Graduado?',
         'Año Graduación'
       ]);
       
       // Formatear encabezados
-      const headerRange = sheet.getRange(1, 1, 1, 9);
+      const headerRange = sheet.getRange(1, 1, 1, 10);
       headerRange.setFontWeight('bold');
       headerRange.setBackground('#4285f4');
       headerRange.setFontColor('#ffffff');
@@ -47,18 +53,19 @@ function doPost(e) {
     // Agregar nueva fila con los datos
     sheet.appendRow([
       new Date(),                  // Timestamp
-      data.categoria,              // Categoría
-      data.equipo,                 // Equipo
-      data.nombre,                 // Nombre
-      data.cedula,                 // Cédula
-      data.celular,                // Celular
-      data.correo,                 // Correo
-      data.nacimiento,             // Fecha Nacimiento
-      data.graduacion              // Año Graduación
+      data.categoria || '',        // Categoría
+      data.equipo || '',           // Equipo
+      data.nombre || '',           // Nombre
+      data.cedula || '',           // Cédula
+      data.celular || '',          // Celular
+      data.correo || '',           // Correo
+      data.nacimiento || '',       // Fecha Nacimiento
+      data.graduado || 'No',       // ¿Graduado? (default: No)
+      data.graduacion || 'N/A'     // Año Graduación (default: N/A)
     ]);
     
     // Ajustar el ancho de las columnas automáticamente
-    sheet.autoResizeColumns(1, 9);
+    sheet.autoResizeColumns(1, 10);
     
     // Retornar respuesta exitosa
     return ContentService
@@ -81,21 +88,45 @@ function doPost(e) {
 
 // Función de prueba (opcional)
 function testDoPost() {
-  const testData = {
+  // Prueba 1: Usuario graduado
+  const testDataGraduado = {
     postData: {
       contents: JSON.stringify({
         categoria: "Olympus",
         equipo: "Manchester",
-        nombre: "Juan Pérez",
+        nombre: "Juan Carlos Pérez González",
         cedula: "1234567890",
         celular: "0991234567",
         correo: "juan@ejemplo.com",
         nacimiento: "1995-05-15",
+        graduado: "Sí",
         graduacion: "2013"
       })
     }
   };
   
-  const result = doPost(testData);
-  Logger.log(result.getContent());
+  Logger.log('=== PRUEBA 1: Usuario Graduado ===');
+  const result1 = doPost(testDataGraduado);
+  Logger.log(result1.getContent());
+  
+  // Prueba 2: Usuario NO graduado
+  const testDataNoGraduado = {
+    postData: {
+      contents: JSON.stringify({
+        categoria: "Master",
+        equipo: "Faced",
+        nombre: "María José López Ramírez",
+        cedula: "0987654321",
+        celular: "0998765432",
+        correo: "maria@ejemplo.com",
+        nacimiento: "2000-08-20",
+        graduado: "No",
+        graduacion: "N/A"
+      })
+    }
+  };
+  
+  Logger.log('=== PRUEBA 2: Usuario NO Graduado ===');
+  const result2 = doPost(testDataNoGraduado);
+  Logger.log(result2.getContent());
 }

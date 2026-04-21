@@ -194,6 +194,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Auto-advance slider every 4 seconds
     setInterval(nextSlide, 4000);
     
+    // Lógica para mostrar/ocultar año de graduación
+    const graduadoCheckbox = document.getElementById('graduado');
+    const graduacionGroup = document.getElementById('graduacion-group');
+    const graduacionSelect = document.getElementById('graduacion');
+    
+    graduadoCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+            graduacionGroup.style.display = 'block';
+            graduacionSelect.required = true;
+        } else {
+            graduacionGroup.style.display = 'none';
+            graduacionSelect.required = false;
+            graduacionSelect.selectedIndex = 0; // Reset selection
+        }
+    });
+    
     // Filtrado dinámico de equipos por categoría
     const categoriaSelect = document.getElementById('categoria');
     const equipoSelect = document.getElementById('equipo');
@@ -337,7 +353,8 @@ document.addEventListener('DOMContentLoaded', function() {
             celular: document.getElementById('celular').value,
             correo: document.getElementById('correo').value,
             nacimiento: fechaNacimiento,
-            graduacion: document.getElementById('graduacion').value,
+            graduado: document.getElementById('graduado').checked ? 'Sí' : 'No',
+            graduacion: document.getElementById('graduado').checked ? document.getElementById('graduacion').value : 'N/A',
             terminos: document.getElementById('terminos').checked
         };
         
@@ -362,6 +379,15 @@ document.addEventListener('DOMContentLoaded', function() {
             hasErrors = true;
         }
         
+        // Validar año de graduación si está marcado como graduado
+        if (document.getElementById('graduado').checked) {
+            const anioGraduacion = document.getElementById('graduacion').value;
+            if (!anioGraduacion || anioGraduacion === '') {
+                alert('Por favor seleccione el año de graduación');
+                hasErrors = true;
+            }
+        }
+        
         // Validar términos
         if (!formData.terminos) {
             alert('Debe aceptar los términos y condiciones');
@@ -375,6 +401,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         console.log('✅ Todos los campos validados correctamente');
         console.log('📊 Datos a enviar:', formData);
+        console.log('🔍 Campo graduado:', formData.graduado);
+        console.log('🔍 Campo graduacion:', formData.graduacion);
         
         // Enviar a Google Sheets
         enviarAGoogleSheets(formData);
@@ -393,6 +421,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('dia-nacimiento').selectedIndex = 0;
         document.getElementById('mes-nacimiento').selectedIndex = 0;
         document.getElementById('anio-nacimiento').selectedIndex = 0;
+        
+        // Resetear checkbox de graduado y ocultar campo de año
+        document.getElementById('graduado').checked = false;
+        document.getElementById('graduacion-group').style.display = 'none';
+        document.getElementById('graduacion').required = false;
+        document.getElementById('graduacion').selectedIndex = 0;
         
         // Deshabilitar select de equipos después del reset
         equipoSelect.disabled = true;
