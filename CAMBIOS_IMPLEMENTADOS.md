@@ -103,7 +103,7 @@ Después de seleccionar categoría:
 
 ---
 
-## 📋 EQUIPOS IMPLEMENTADOS (28 TOTALES)
+## 📋 EQUIPOS IMPLEMENTADOS (29 TOTALES)
 
 ### **Categoría Olympus** → 7 equipos
 ✅ Copiadora 95
@@ -114,7 +114,7 @@ Después de seleccionar categoría:
 ✅ Superdill
 ✅ DFC
 
-### **Categoría Master** → 11 equipos
+### **Categoría Master** → 12 equipos
 ✅ Faced
 ✅ Dillon corp
 ✅ Dilfc 99
@@ -126,6 +126,7 @@ Después de seleccionar categoría:
 ✅ Los de siempre
 ✅ CCCC
 ✅ Papá Oso
+✅ Ferrari
 
 ### **Categoría Senior** → 10 equipos
 ✅ Copiadora 95
@@ -241,7 +242,7 @@ Después de seleccionar categoría:
 ### **index.html**
 ```diff
 + Agregado select de categoría
-+ Actualizado select de equipos (28 equipos con data-categoria)
++ Actualizado select de equipos (29 equipos con data-categoria)
 + Agregados spans para mensajes de error
 + Atributos de validación HTML5 (pattern, maxlength)
 ```
@@ -305,7 +306,7 @@ Después de seleccionar categoría:
 ## ✅ CHECKLIST DE IMPLEMENTACIÓN
 
 - [x] Campo categoría agregado
-- [x] 28 equipos agregados y organizados
+- [x] 29 equipos agregados y organizados
 - [x] Filtrado dinámico implementado
 - [x] Validación de cédula ecuatoriana
 - [x] Validación de celular ecuatoriano
