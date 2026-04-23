@@ -27,6 +27,9 @@ function doPost(e) {
     Logger.log('Datos recibidos: ' + JSON.stringify(data));
     Logger.log('Graduado: ' + data.graduado);
     Logger.log('Graduación: ' + data.graduacion);
+    Logger.log('No Graduado: ' + data.noGraduado);
+    Logger.log('Último Año Cursado: ' + data.ultimoAnioCursado);
+    Logger.log('Año Cursado: ' + data.anioCursado);
     
     // Si es la primera vez, agregar encabezados
     if (sheet.getLastRow() === 0) {
@@ -40,11 +43,14 @@ function doPost(e) {
         'Correo',
         'Fecha Nacimiento',
         '¿Graduado?',
-        'Año Graduación'
+        'Año Graduación',
+        'No Graduado',
+        'Último Año Cursado',
+        'Año en que Estuvo'
       ]);
       
       // Formatear encabezados
-      const headerRange = sheet.getRange(1, 1, 1, 10);
+      const headerRange = sheet.getRange(1, 1, 1, 13);
       headerRange.setFontWeight('bold');
       headerRange.setBackground('#4285f4');
       headerRange.setFontColor('#ffffff');
@@ -52,20 +58,23 @@ function doPost(e) {
     
     // Agregar nueva fila con los datos
     sheet.appendRow([
-      new Date(),                  // Timestamp
-      data.categoria || '',        // Categoría
-      data.equipo || '',           // Equipo
-      data.nombre || '',           // Nombre
-      data.cedula || '',           // Cédula
-      data.celular || '',          // Celular
-      data.correo || '',           // Correo
-      data.nacimiento || '',       // Fecha Nacimiento
-      data.graduado || 'No',       // ¿Graduado? (default: No)
-      data.graduacion || 'N/A'     // Año Graduación (default: N/A)
+      new Date(),                         // Timestamp
+      data.categoria || '',               // Categoría
+      data.equipo || '',                  // Equipo
+      data.nombre || '',                  // Nombre
+      data.cedula || '',                  // Cédula
+      data.celular || '',                 // Celular
+      data.correo || '',                  // Correo
+      data.nacimiento || '',              // Fecha Nacimiento
+      data.graduado || 'No',              // ¿Graduado? (default: No)
+      data.graduacion || 'N/A',           // Año Graduación (default: N/A)
+      data.noGraduado || 'No',            // No Graduado (default: No)
+      data.ultimoAnioCursado || 'N/A',    // Último Año Cursado (default: N/A)
+      data.anioCursado || 'N/A'           // Año en que Estuvo (default: N/A)
     ]);
     
     // Ajustar el ancho de las columnas automáticamente
-    sheet.autoResizeColumns(1, 10);
+    sheet.autoResizeColumns(1, 13);
     
     // Retornar respuesta exitosa
     return ContentService
@@ -100,7 +109,10 @@ function testDoPost() {
         correo: "juan@ejemplo.com",
         nacimiento: "1995-05-15",
         graduado: "Sí",
-        graduacion: "2013"
+        graduacion: "2013",
+        noGraduado: "No",
+        ultimoAnioCursado: "N/A",
+        anioCursado: "N/A"
       })
     }
   };
@@ -109,7 +121,7 @@ function testDoPost() {
   const result1 = doPost(testDataGraduado);
   Logger.log(result1.getContent());
   
-  // Prueba 2: Usuario NO graduado
+  // Prueba 2: Usuario NO graduado del colegio
   const testDataNoGraduado = {
     postData: {
       contents: JSON.stringify({
@@ -121,12 +133,39 @@ function testDoPost() {
         correo: "maria@ejemplo.com",
         nacimiento: "2000-08-20",
         graduado: "No",
-        graduacion: "N/A"
+        graduacion: "N/A",
+        noGraduado: "Sí",
+        ultimoAnioCursado: "1ro",
+        anioCursado: "2015"
       })
     }
   };
   
-  Logger.log('=== PRUEBA 2: Usuario NO Graduado ===');
+  Logger.log('=== PRUEBA 2: Usuario NO Graduado del Colegio ===');
   const result2 = doPost(testDataNoGraduado);
   Logger.log(result2.getContent());
+  
+  // Prueba 3: Usuario que no marcó ninguna opción
+  const testDataNinguno = {
+    postData: {
+      contents: JSON.stringify({
+        categoria: "Senior",
+        equipo: "Piwis",
+        nombre: "Pedro Antonio Martínez Silva",
+        cedula: "1122334455",
+        celular: "0993344556",
+        correo: "pedro@ejemplo.com",
+        nacimiento: "2002-03-10",
+        graduado: "No",
+        graduacion: "N/A",
+        noGraduado: "No",
+        ultimoAnioCursado: "N/A",
+        anioCursado: "N/A"
+      })
+    }
+  };
+  
+  Logger.log('=== PRUEBA 3: Usuario sin marcar ninguna opción ===');
+  const result3 = doPost(testDataNinguno);
+  Logger.log(result3.getContent());
 }

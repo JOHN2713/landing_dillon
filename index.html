@@ -211,6 +211,32 @@
                         </div>
 
                         <div class="form-group checkbox-group">
+                            <label class="checkbox-label" for="no-graduado">
+                                <input type="checkbox" id="no-graduado" name="no-graduado">
+                                <span>No me gradué en el colegio</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group" id="no-graduado-group" style="display: none;">
+                            <label for="ultimo-anio-cursado">Último año cursado</label>
+                            <select id="ultimo-anio-cursado" name="ultimo-anio-cursado">
+                                <option value="">Seleccione el último año</option>
+                                <option value="8vo">8vo</option>
+                                <option value="9no">9no</option>
+                                <option value="10mo">10mo</option>
+                                <option value="1ro">1ro</option>
+                                <option value="2do">2do</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="anio-cursado-group" style="display: none;">
+                            <label for="anio-cursado">¿En qué año estuvo?</label>
+                            <select id="anio-cursado" name="anio-cursado">
+                                <option value="">Seleccione año</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group checkbox-group">
                             <label class="checkbox-label" for="terminos">
                                 <input type="checkbox" id="terminos" name="terminos" required>
                                 <span>Acepto los <a href="#" id="openTermsModal" class="terms-link">términos y condiciones</a></span>
