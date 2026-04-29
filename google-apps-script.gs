@@ -28,8 +28,16 @@ function doPost(e) {
     Logger.log('Graduado: ' + data.graduado);
     Logger.log('Graduación: ' + data.graduacion);
     Logger.log('No Graduado: ' + data.noGraduado);
-    Logger.log('Último Año Cursado: ' + data.ultimoAnioCursado);
-    Logger.log('Año Cursado: ' + data.anioCursado);
+    
+    // Determinar el estado de graduación
+    let estadoGraduacion = '';
+    if (data.noGraduado === 'Sí') {
+      estadoGraduacion = 'No se graduó';
+    } else if (data.graduado === 'Sí' && data.graduacion && data.graduacion !== 'N/A') {
+      estadoGraduacion = 'Graduado en ' + data.graduacion;
+    } else {
+      estadoGraduacion = 'Sin información';
+    }
     
     // Si es la primera vez, agregar encabezados
     if (sheet.getLastRow() === 0) {
@@ -42,15 +50,11 @@ function doPost(e) {
         'Celular',
         'Correo',
         'Fecha Nacimiento',
-        '¿Graduado?',
-        'Año Graduación',
-        'No Graduado',
-        'Último Año Cursado',
-        'Año en que Estuvo'
+        'Estado de Graduación'
       ]);
       
       // Formatear encabezados
-      const headerRange = sheet.getRange(1, 1, 1, 13);
+      const headerRange = sheet.getRange(1, 1, 1, 9);
       headerRange.setFontWeight('bold');
       headerRange.setBackground('#4285f4');
       headerRange.setFontColor('#ffffff');
@@ -66,15 +70,11 @@ function doPost(e) {
       data.celular || '',                 // Celular
       data.correo || '',                  // Correo
       data.nacimiento || '',              // Fecha Nacimiento
-      data.graduado || 'No',              // ¿Graduado? (default: No)
-      data.graduacion || 'N/A',           // Año Graduación (default: N/A)
-      data.noGraduado || 'No',            // No Graduado (default: No)
-      data.ultimoAnioCursado || 'N/A',    // Último Año Cursado (default: N/A)
-      data.anioCursado || 'N/A'           // Año en que Estuvo (default: N/A)
+      estadoGraduacion                    // Estado de Graduación
     ]);
     
     // Ajustar el ancho de las columnas automáticamente
-    sheet.autoResizeColumns(1, 13);
+    sheet.autoResizeColumns(1, 9);
     
     // Retornar respuesta exitosa
     return ContentService
@@ -110,9 +110,7 @@ function testDoPost() {
         nacimiento: "1995-05-15",
         graduado: "Sí",
         graduacion: "2013",
-        noGraduado: "No",
-        ultimoAnioCursado: "N/A",
-        anioCursado: "N/A"
+        noGraduado: "No"
       })
     }
   };
@@ -134,9 +132,7 @@ function testDoPost() {
         nacimiento: "2000-08-20",
         graduado: "No",
         graduacion: "N/A",
-        noGraduado: "Sí",
-        ultimoAnioCursado: "1ro",
-        anioCursado: "2015"
+        noGraduado: "Sí"
       })
     }
   };
@@ -158,9 +154,7 @@ function testDoPost() {
         nacimiento: "2002-03-10",
         graduado: "No",
         graduacion: "N/A",
-        noGraduado: "No",
-        ultimoAnioCursado: "N/A",
-        anioCursado: "N/A"
+        noGraduado: "No"
       })
     }
   };

@@ -1,23 +1,15 @@
 // Generate year options for graduation year and birth date selects
 function populateYearSelects() {
     const graduacionSelect = document.getElementById('graduacion');
-    const anioCursadoSelect = document.getElementById('anio-cursado');
     
     // Clear existing options
     graduacionSelect.innerHTML = '';
-    anioCursadoSelect.innerHTML = '';
     
     // Add placeholder for graduacion
     const placeholderGrad = document.createElement('option');
     placeholderGrad.value = '';
     placeholderGrad.textContent = 'Seleccione año';
     graduacionSelect.appendChild(placeholderGrad);
-    
-    // Add placeholder for anio-cursado
-    const placeholderAnio = document.createElement('option');
-    placeholderAnio.value = '';
-    placeholderAnio.textContent = 'Seleccione año';
-    anioCursadoSelect.appendChild(placeholderAnio);
     
     // Populate graduation years (1965-2026)
     for (let year = 2026; year >= 1965; year--) {
@@ -28,12 +20,6 @@ function populateYearSelects() {
             option.selected = true;
         }
         graduacionSelect.appendChild(option);
-        
-        // También poblar para anio-cursado
-        const optionAnio = document.createElement('option');
-        optionAnio.value = year;
-        optionAnio.textContent = year;
-        anioCursadoSelect.appendChild(optionAnio);
     }
     
     // Poblar selects de fecha de nacimiento para móvil
@@ -213,12 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const graduacionGroup = document.getElementById('graduacion-group');
     const graduacionSelect = document.getElementById('graduacion');
     
-    // Lógica para el nuevo checkbox "No me gradué en el colegio"
+    // Lógica para el checkbox "No me gradué en el colegio"
     const noGraduadoCheckbox = document.getElementById('no-graduado');
-    const noGraduadoGroup = document.getElementById('no-graduado-group');
-    const anioCursadoGroup = document.getElementById('anio-cursado-group');
-    const ultimoAnioCursadoSelect = document.getElementById('ultimo-anio-cursado');
-    const anioCursadoSelect = document.getElementById('anio-cursado');
     
     graduadoCheckbox.addEventListener('change', function() {
         if (this.checked) {
@@ -226,14 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
             graduacionGroup.style.display = 'block';
             graduacionSelect.required = true;
             
-            // Desmarcar y ocultar campos de no graduado
+            // Desmarcar no graduado
             noGraduadoCheckbox.checked = false;
-            noGraduadoGroup.style.display = 'none';
-            anioCursadoGroup.style.display = 'none';
-            ultimoAnioCursadoSelect.required = false;
-            anioCursadoSelect.required = false;
-            ultimoAnioCursadoSelect.selectedIndex = 0;
-            anioCursadoSelect.selectedIndex = 0;
         } else {
             graduacionGroup.style.display = 'none';
             graduacionSelect.required = false;
@@ -243,24 +219,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     noGraduadoCheckbox.addEventListener('change', function() {
         if (this.checked) {
-            // Mostrar campos de no graduado
-            noGraduadoGroup.style.display = 'block';
-            anioCursadoGroup.style.display = 'block';
-            ultimoAnioCursadoSelect.required = true;
-            anioCursadoSelect.required = true;
-            
             // Desmarcar y ocultar campo de graduado
             graduadoCheckbox.checked = false;
             graduacionGroup.style.display = 'none';
             graduacionSelect.required = false;
             graduacionSelect.selectedIndex = 0;
-        } else {
-            noGraduadoGroup.style.display = 'none';
-            anioCursadoGroup.style.display = 'none';
-            ultimoAnioCursadoSelect.required = false;
-            anioCursadoSelect.required = false;
-            ultimoAnioCursadoSelect.selectedIndex = 0;
-            anioCursadoSelect.selectedIndex = 0;
         }
     });
     
@@ -410,8 +373,6 @@ document.addEventListener('DOMContentLoaded', function() {
             graduado: document.getElementById('graduado').checked ? 'Sí' : 'No',
             graduacion: document.getElementById('graduado').checked ? document.getElementById('graduacion').value : 'N/A',
             noGraduado: document.getElementById('no-graduado').checked ? 'Sí' : 'No',
-            ultimoAnioCursado: document.getElementById('no-graduado').checked ? document.getElementById('ultimo-anio-cursado').value : 'N/A',
-            anioCursado: document.getElementById('no-graduado').checked ? document.getElementById('anio-cursado').value : 'N/A',
             terminos: document.getElementById('terminos').checked
         };
         
@@ -441,22 +402,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const anioGraduacion = document.getElementById('graduacion').value;
             if (!anioGraduacion || anioGraduacion === '') {
                 alert('Por favor seleccione el año de graduación');
-                hasErrors = true;
-            }
-        }
-        
-        // Validar campos de no graduado si está marcado
-        if (document.getElementById('no-graduado').checked) {
-            const ultimoAnio = document.getElementById('ultimo-anio-cursado').value;
-            const anioCursado = document.getElementById('anio-cursado').value;
-            
-            if (!ultimoAnio || ultimoAnio === '') {
-                alert('Por favor seleccione el último año cursado');
-                hasErrors = true;
-            }
-            
-            if (!anioCursado || anioCursado === '') {
-                alert('Por favor seleccione en qué año estuvo');
                 hasErrors = true;
             }
         }
@@ -501,14 +446,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('graduacion').required = false;
         document.getElementById('graduacion').selectedIndex = 0;
         
-        // Resetear checkbox de no graduado y ocultar campos
+        // Resetear checkbox de no graduado
         document.getElementById('no-graduado').checked = false;
-        document.getElementById('no-graduado-group').style.display = 'none';
-        document.getElementById('anio-cursado-group').style.display = 'none';
-        document.getElementById('ultimo-anio-cursado').required = false;
-        document.getElementById('anio-cursado').required = false;
-        document.getElementById('ultimo-anio-cursado').selectedIndex = 0;
-        document.getElementById('anio-cursado').selectedIndex = 0;
         
         // Deshabilitar select de equipos después del reset
         equipoSelect.disabled = true;
@@ -569,7 +508,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Función para enviar datos a Google Sheets
 async function enviarAGoogleSheets(formData) {
     // IMPORTANTE: Reemplaza esta URL con la URL de tu Google Apps Script
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyWsKLkg5XGsRSoRWpo_KNJFpxQGQadDzFy2Uh3YrcEqHalt7jS50DUDPWgKeaByPIFyQ/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzf3dw4EFs2if4ByGKwvuzb2Wb17nMi8YHfjqzCZ205LnYwSEL_VJ1iUGeXjRboZcf3Wg/exec';
     
     try {
         const response = await fetch(GOOGLE_SCRIPT_URL, {
